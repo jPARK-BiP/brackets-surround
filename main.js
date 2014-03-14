@@ -18,6 +18,9 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
+ *
+ * Edited by James Park - 2014
+ * Added better error control to the plugin
  */
 
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
@@ -115,6 +118,9 @@ define(function (require, exports, module) {
             if (e.which === 13) {
                 e.preventDefault();
                 var _c = $('#surround_input').val();
+				
+				// returns the last character of the string input for error checking
+				var _lc = _c.slice(-1);
     
                 if (_c === null) {
                     return;
@@ -128,7 +134,14 @@ define(function (require, exports, module) {
                             return;
                         }
                         _output = _c + _t + _closeHTML(_c);
-                    } else {
+						
+						// Closes the connection if the last character is punctuation
+						// (Causes crash on some Brackets installs).
+                    } else if (", . ; ' /".indexOf(_lc) !== -1) {
+						Dialogs.cancelModalDialogIfOpen('surround_input');
+                        return;
+						
+					} else {
                         _output = _c + _t + _c;
                     }
                 }
