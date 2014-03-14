@@ -4,7 +4,7 @@
     "description": "A tool which allows you to wrap selected text with special characters and HTML. -Updated",
     "homepage": "https://github.com/jPARK-BiP/brackets-surround",
     "version": "1.0.0",
-    "author": "Patrick Edelman <patrick.the.edelman@gmail.com> (https://github.com/pedelman), James Park <james.a.park@live.com> (https://github.com/jPARK-BiP)",
+    "author": "Patrick Edelman <patrick.the.edelman@gmail.com> (https://github.com/pedelman)",
     "license": "MIT",
     "engines": {
         "brackets": ">=0.27.0"
